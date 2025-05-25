@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter  clone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+          <div class="logo">MyTwitter</div>
+          <div class="search">
+            <input type="text" placeholder="Search Twitter">
+          </div>
+          <div class="theme-toggle" id="themeToggle">🌙</div>
+        </header>
+        <div class="content">
+          <nav>
+            <a href="#">🏠 Home</a>
+            <a href="#">🔍 Explore</a>
+            <a href="#">🔔 Notifications</a>
+            <a href="#">✉️ Messages</a>
+          </nav>
+          <main>
+            <section class="composer">
+              <img src="https://via.placeholder.com/48" alt="User avatar">
+              <textarea placeholder="What's happening?" maxlength="280"></textarea>
+              <div class="actions">
+                <span id="charCount">0/280</span>
+                <button>Tweet</button>
+              </div>
+            </section>
+            <section class="feed">
+              <article class="tweet">
+                <img src="https://via.placeholder.com/48" alt="User avatar">
+                <div class="tweet-content">
+                  <div class="tweet-header">
+                    <span class="user">John Doe</span>
+                    <span class="handle">@johndoe</span>
+                  </div>
+                  <div class="tweet-body">Just setting up my beautiful Twitter clone! #firstTweet</div>
+                  <div class="tweet-footer">
+                    <span>💬 4</span>
+                    <span>🔁 10</span>
+                    <span>❤️ 25</span>
+                    <span>📤</span>
+                  </div>
+                </div>
+              </article>
+            </section>
+          </main>
+          <aside class="sidebar">
+            <h3>Trends for you</h3>
+            <p>#WebDev</p>
+            <p>#DarkMode</p>
+            <p>#CSS</p>
+          </aside>
+        </div>
+      </div>
+      <script>
+        // Dark Mode Toggle
+        const toggle = document.getElementById('themeToggle');
+        toggle.addEventListener('click', () => {
+          const root = document.documentElement;
+          if (root.getAttribute('data-theme') === 'light') {
+            root.setAttribute('data-theme', 'dark');
+            toggle.textContent = '☀️';
+          } else {
+            root.setAttribute('data-theme', 'light');
+            toggle.textContent = '🌙';
+          }
+        });
+        // Character Count
+        const textarea = document.querySelector('.composer textarea');
+        const charCount = document.getElementById('charCount');
+        textarea.addEventListener('input', () => {
+          charCount.textContent = `${textarea.value.length}/280`;
+        });
+      </script>
+</body>
+</html>
