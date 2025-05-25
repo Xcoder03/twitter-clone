@@ -10,11 +10,17 @@
     <div class="container">
         <header>
           <div class="logo">MyTwitter</div>
-          <div class="search">
-            <input type="text" placeholder="Search Twitter">
-          </div>
+          <div class="search"><input type="text" placeholder="Search"></div>
           <div class="theme-toggle" id="themeToggle">🌙</div>
         </header>
+        <div class="tabs">
+          <button class="active">For You</button>
+          <button>Following</button>
+          <button>Web Tech</button>
+          <button>Freelancers</button>
+          <button>DevOps | SRE</button>
+          <button>DevOps</button>
+        </div>
         <div class="content">
           <nav>
             <a href="#">🏠 Home</a>
@@ -24,27 +30,25 @@
           </nav>
           <main>
             <section class="composer">
-              <img src="https://via.placeholder.com/48" alt="User avatar">
-              <textarea placeholder="What's happening?" maxlength="280"></textarea>
-              <div class="actions">
-                <span id="charCount">0/280</span>
-                <button>Tweet</button>
+              <img src="pink.jpeg" alt="Your avatar">
+              <div class="composer-body">
+                <textarea placeholder="What's happening?" maxlength="280"></textarea>
+                <div class="actions">
+                  <span id="charCount">0/280</span>
+                  <button>Post</button>
+                </div>
               </div>
             </section>
             <section class="feed">
               <article class="tweet">
-                <img src="https://via.placeholder.com/48" alt="User avatar">
+                <img src="tulipsguy.jpeg" alt="Tweet author">
                 <div class="tweet-content">
                   <div class="tweet-header">
-                    <span class="user">John Doe</span>
-                    <span class="handle">@johndoe</span>
+                    <span class="user">Alvin</span><span class="handle">@Veri5ied</span>
                   </div>
-                  <div class="tweet-body">Just setting up my beautiful Twitter clone! #firstTweet</div>
+                  <div class="tweet-body">How do you have access to Fortnite?</div>
                   <div class="tweet-footer">
-                    <span>💬 4</span>
-                    <span>🔁 10</span>
-                    <span>❤️ 25</span>
-                    <span>📤</span>
+                    <span>💬 1</span><span>🔁 2</span><span>❤️ 5</span><span>📤</span>
                   </div>
                 </div>
               </article>
@@ -60,16 +64,11 @@
       </div>
       <script>
         // Dark Mode Toggle
-        const toggle = document.getElementById('themeToggle');
-        toggle.addEventListener('click', () => {
+        document.getElementById('themeToggle').addEventListener('click', () => {
           const root = document.documentElement;
-          if (root.getAttribute('data-theme') === 'light') {
-            root.setAttribute('data-theme', 'dark');
-            toggle.textContent = '☀️';
-          } else {
-            root.setAttribute('data-theme', 'light');
-            toggle.textContent = '🌙';
-          }
+          const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+          root.setAttribute('data-theme', next);
+          document.getElementById('themeToggle').textContent = next === 'light' ? '🌙' : '☀️';
         });
         // Character Count
         const textarea = document.querySelector('.composer textarea');

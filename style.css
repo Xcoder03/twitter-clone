@@ -1,6 +1,7 @@
 :root {
-    --bg: #fff;
+    --bg: #ffffff;
     --bg-secondary: #f5f8fa;
+    --card-bg: #ffffff;
     --text: #0f1419;
     --text-secondary: #536471;
     --primary: #1da1f2;
@@ -10,11 +11,12 @@
   [data-theme="dark"] {
     --bg: #15202b;
     --bg-secondary: #192734;
+    --card-bg: #192734;
     --text: #e1e8ed;
     --text-secondary: #8899a6;
     --primary: #1da1f2;
     --border: #38444d;
-    --shadow: rgba(0,  0,  0,  0.4);
+    --shadow: rgba(0, 0, 0, 0.4);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -31,15 +33,19 @@
     background: var(--bg);
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    position: sticky; top: 0; z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
   header .logo { font-size: 1.5rem; color: var(--primary); font-weight: bold; }
   header .search {
     flex: 1; max-width: 400px; margin: 0 1rem;
   }
   header .search input {
-    width: 100%; padding: 0.5rem 1rem; border-radius: 20px;
+    width: 100%; padding: 0.5rem 1rem; border-radius: 9999px;
     border: 1px solid var(--border); background: var(--bg-secondary);
     color: var(--text);
   }
@@ -47,67 +53,129 @@
     cursor: pointer; font-size: 1.25rem; color: var(--text-secondary);
   }
 
+  .tabs {
+    display: flex;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 2px var(--shadow);
+  }
+  .tabs button {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    background: none;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+  .tabs button.active {
+    color: var(--text);
+    border-bottom: 2px solid var(--primary);
+    font-weight: bold;
+  }
+
   .content { display: flex; }
-  nav, .sidebar { display: none; }
-  main { flex: 1; max-width: 600px; margin: 0 auto; }
+  /* Show sidebar/nav on all viewports */
+  nav {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    background: var(--card-bg);
+    padding: 1rem;
+    border-right: 1px solid var(--border);
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 120px);
+  }
+  nav a { font-size: 1.1rem; color: var(--text); }
+  .sidebar {
+    display: block;
+    width: 25%;
+    background: var(--card-bg);
+    padding: 1rem;
+    border-left: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 120px);
+  }
+  main {
+    flex: 1;
+    padding: 1rem;
+    max-width: 55%;
+    margin: 0 auto;
+  }
 
   /* Composer */
   .composer {
-    background: var(--bg); padding: 1rem; border-bottom: 1px solid var(--border);
-    display: flex; gap: 0.75rem;
+    background: var(--card-bg);
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
   }
   .composer img {
-    width: 48px; height: 48px; border-radius: 50%;
+    width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+  }
+  .composer-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
   .composer textarea {
-    flex: 1; border: none; outline: none;
-    background: var(--bg-secondary); border-radius: 20px;
-    padding: 0.75rem 1rem; resize: none; font-size: 1rem;
+    flex: 1;
+    border: none;
+    outline: none;
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 0.75rem 1rem;
+    resize: none;
+    font-size: 1rem;
     color: var(--text);
+    min-height: 80px;
   }
-  .composer .actions {
-    display: flex; align-items: center; justify-content: space-between;
-    width: 100%; padding: 0 0.75rem;
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
   }
-  .composer .actions button {
-    background: var(--primary); color: #fff;
-    border: none; padding: 0.5rem 1rem; border-radius: 20px;
-    font-weight: bold; cursor: pointer;
+  .actions button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
   }
 
   /* Tweets Feed */
-  .feed { margin-top: 1rem; }
+  .feed { display: flex; flex-direction: column; gap: 1rem; }
   .tweet {
-    background: var(--bg); padding: 1rem;
-    border-bottom: 1px solid var(--border);
-    display: flex; gap: 0.75rem;
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 0.75rem;
+    border: 1px solid var(--border);
   }
   .tweet img {
-    width: 48px; height: 48px; border-radius: 50%;
+    width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
   }
   .tweet-content {
     flex: 1;
   }
   .tweet-header {
-    display: flex; align-items: center; gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
   }
   .tweet-header .user { font-weight: bold; }
   .tweet-header .handle { color: var(--text-secondary); }
-  .tweet-body { margin: 0.5rem 0; line-height: 1.5; }
-  .tweet-footer { display: flex; gap: 2rem; color: var(--text-secondary); font-size: 0.9rem; }
+  .tweet-body { margin: 0.5rem 0; line-height: 1.5; font-size: 1rem; }
+  .tweet-footer { display: flex; gap: 2rem; color: var(--text-secondary); font-size: 0.85rem; }
   .tweet-footer span { cursor: pointer; }
-
-  /* Desktop Layout */
-  @media (min-width: 768px) {
-    nav {
-      display: flex; flex-direction: column; width: 20%; background: var(--bg);
-      padding: 1rem; border-right: 1px solid var(--border);
-      gap: 1rem;
-    }
-    .sidebar {
-      display: block; width: 25%; background: var(--bg);
-      padding: 1rem; border-left: 1px solid var(--border);
-    }
-    .content { width: 100%; }
-    main { margin: 0; }
-  }
